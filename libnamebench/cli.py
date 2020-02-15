@@ -49,7 +49,7 @@ class NameBenchCli(base_ui.BaseUI):
 
     if error:
       print
-      print '* ERROR: %s' % msg
+      print('* ERROR: %s' % msg)
       sys.exit(2)
     elif not total:
       self.last_msg_count_posted = 0
@@ -78,7 +78,7 @@ class NameBenchCli(base_ui.BaseUI):
 
   def RunAndOpenReports(self):
     self.RunBenchmark()
-    print "\n%s\n" % self.reporter.CreateReport(format='ascii')
+    print("\n%s\n" % self.reporter.CreateReport(format='ascii'))
     self.CreateReports()
     if self.options.open_webbrowser:
       self.DisplayHtmlReport()
@@ -93,35 +93,35 @@ class NameBenchCli(base_ui.BaseUI):
             self.options.query_count,
             self.options.run_count, self.options.timeout,
             self.options.health_timeout, self.options.num_servers))
-    print '-' * 78
+    print('-' * 78)
 
     if not self.options.tags:
-      print "You need to specify some DNS servers to benchmark. Try:"
-      print ""
-      print "namebench.py -s all              # Test best available DNS servers"
-      print "namebench.py -s preferred,isp    # Only test preferred + ISP DNS servers"
-      print "namebench.py -s system           # Only test current system DNS servers"
-      print "namebench.py -s global 8.8.8.8   # Benchmark global DNS servers + 8.8.8.8"
-      print "namebench.py 8.8.8.8 10.0.0.1    # Benchmark just these two servers"
-      print ""
-      print "For more assistance, get help via namebench.py -h"
+      print("You need to specify some DNS servers to benchmark. Try:")
+      print("")
+      print("namebench.py -s all              # Test best available DNS servers")
+      print("namebench.py -s preferred,isp    # Only test preferred + ISP DNS servers")
+      print("namebench.py -s system           # Only test current system DNS servers")
+      print("namebench.py -s global 8.8.8.8   # Benchmark global DNS servers + 8.8.8.8")
+      print("namebench.py 8.8.8.8 10.0.0.1    # Benchmark just these two servers")
+      print("")
+      print("For more assistance, get help via namebench.py -h")
       sys.exit(1)
 
     self.PrepareNameServers()
     try:
       self.LoadDataSources()
       self.PrepareTestRecords()
-      print '-' * 78
+      print('-' * 78)
       if not self.options.skip_health_checks:
         self.CheckNameServerHealth()
-      print 'Final list of nameservers considered:'
-      print '-' * 78
+      print('Final list of nameservers considered:')
+      print('-' * 78)
       for n in self.nameservers.SortEnabledByFastest():
-        print '%-15.15s %-18.18s %-4.0fms | %s' % (n.ip, n.name, n.check_average,
-                                                   n.warnings_string)
-      print ''
+        print('%-15.15s %-18.18s %-4.0fms | %s' % (n.ip, n.name, n.check_average,
+                                                   n.warnings_string))
+      print('')
 
-      print ''
+      print('')
       self.PrepareBenchmark()
       self.RunAndOpenReports()
     except (nameserver_list.OutgoingUdpInterception,
