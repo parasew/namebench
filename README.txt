@@ -6,7 +6,7 @@ This is a fork from the orinal namebench from 2011, which originally ran on pyth
 Here are the additions of this version
 - Replacement of Google Gears to an actually workins service
 - Updates to the external libraries
-- 
+- Partly ported to python3
 
 namebench hunts down the fastest DNS servers available for your
 computer to use. It runs a fair and thorough benchmark using your web
